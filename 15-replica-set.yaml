@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:stable-pearl
+        image: nginx:stable-perl
 
 ---
 kind: Service

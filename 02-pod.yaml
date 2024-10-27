@@ -6,4 +6,4 @@ spec:
  containers:
  # docker run -d --name nginx nginx
  - name: nginx
-   image: nginx:stable-pearl
+   image: nginx:stable-perl
