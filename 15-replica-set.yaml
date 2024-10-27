@@ -3,7 +3,7 @@ kind: ReplicaSet
 metadata:
   name: nginx
 
-  labels: # these are relicaset labels
+  labels: # these are replicaset labels
     app: nginx
     tier: frontend
 spec:
@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: nginx:stable-pearl
 
 ---
 kind: Service
