@@ -13,41 +13,38 @@ spec:
   csi:
     driver: efs.csi.aws.com
     volumeHandle: fs-0923c54ec887d7f1d
-
+    
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: expense-efs
 spec:
-  VolumeName: expense-efs
+  volumeName: expense-efs
   accessModes:
     - ReadWriteOnce
   storageClassName: ""
   resources:
     requests:
       storage: 5Gi
-
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: efs-static
   labels:
-   purpose: efs-static
+    purpose: efs-static
 spec:
   containers:
   - name: nginx
     image: nginx
-    volumeMounts:  # docker run -v hostpath:contaierpath
+    volumeMounts: # docker run -v hostpath:contaierpath
     - name: expense-efs
       mountPath: /usr/share/nginx/html
   volumes:
   - name: expense-efs
     persistentVolumeClaim:
-      claimName: efs-static
-
+      claimName: expense-efs
 ---
 kind: Service
 apiVersion: v1
@@ -63,4 +60,3 @@ spec:
     port: 80 # service port
     targetPort: 80 # container port
     nodePort: 30007
-
